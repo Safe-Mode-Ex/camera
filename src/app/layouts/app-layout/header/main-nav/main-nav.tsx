@@ -1,5 +1,7 @@
 import classNames from 'classnames';
 import { Link } from 'react-router';
+import { AppRoute } from '../../../../../shared/enums';
+import './main-nav.css';
 
 type Props = {
   className?: string;
@@ -14,7 +16,7 @@ function MainNav({ className }: Props) {
     >
       <ul className="main-nav__list">
         <li className="main-nav__item">
-          <Link className="main-nav__link" to="/catalog">Каталог</Link>
+          <Link className="main-nav__link" to={AppRoute.Catalog}>Каталог</Link>
         </li>
         <li className="main-nav__item">
           <Link className="main-nav__link" to="#">Гарантии</Link>

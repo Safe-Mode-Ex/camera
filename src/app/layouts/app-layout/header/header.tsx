@@ -2,6 +2,7 @@ import { Logo } from '../../../../shared/ui/logo';
 import BasketLink from './basket-link/basket-link';
 import FormSearch from './form-search/form-search';
 import MainNav from './main-nav/main-nav';
+import './styles.css';
 
 function Header() {
   return (
