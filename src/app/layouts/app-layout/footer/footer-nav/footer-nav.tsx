@@ -1,4 +1,5 @@
 import { Link } from 'react-router';
+import { AppRoute } from '../../../../../shared/enums';
 
 function FooterNav() {
   return (
@@ -7,7 +8,7 @@ function FooterNav() {
         <p className="footer__title">Навигация</p>
         <ul className="footer__list">
           <li className="footer__item">
-            <Link className="link" to="/catalog">Каталог
+            <Link className="link" to={AppRoute.Catalog}>Каталог
             </Link>
           </li>
           <li className="footer__item">
