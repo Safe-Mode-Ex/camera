@@ -1,5 +1,5 @@
 import { Icon } from '../../../../../shared/ui/icon';
-import './styles.css';
+import './form-search.css';
 
 function FormSearch() {
   return (

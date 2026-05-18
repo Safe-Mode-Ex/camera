@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { Link } from 'react-router';
 import { AppRoute } from '../../../../../shared/enums';
-import './styles.css';
+import './main-nav.css';
 
 type Props = {
   className?: string;
