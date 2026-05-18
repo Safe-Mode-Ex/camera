@@ -1,6 +1,6 @@
 import { Banners } from '../../../widgets/banners';
 
-function Home() {
+function Catalog() {
   return (
     <main>
       <Banners />
@@ -8,4 +8,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Catalog;
