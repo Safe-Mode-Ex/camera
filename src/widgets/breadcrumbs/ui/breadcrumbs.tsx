@@ -14,7 +14,8 @@ function Breadcrumbs() {
             <li className="breadcrumbs__item" key={title}>
               {isLast ?
                 <span className="breadcrumbs__link breadcrumbs__link--active">{title}</span> :
-                <Link className="breadcrumbs__link" to={href}>{title}
+                <Link className="breadcrumbs__link" to={href}>
+                  {title}
                   <Icon title="icon-arrow-mini" width="5" height="8" />
                 </Link>}
             </li>
