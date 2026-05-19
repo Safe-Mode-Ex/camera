@@ -2,6 +2,7 @@ import { Banners } from '../../../widgets/banners';
 import { Breadcrumbs } from '../../../widgets/breadcrumbs';
 import CatalogCards from './catalog-cards/catalog-cards';
 import CatalogFilter from './catalog-filter/catalog-filter';
+import CatalogPagination from './catalog-pagination/catalog-pagination';
 import CatalogSort from './catalog-sort/catalog-sort';
 
 function Catalog() {
@@ -24,6 +25,7 @@ function Catalog() {
               <div className="catalog__content">
                 <CatalogSort />
                 <CatalogCards />
+                <CatalogPagination />
               </div>
             </div>
           </div>
