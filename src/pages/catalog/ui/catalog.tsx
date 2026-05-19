@@ -1,5 +1,6 @@
 import { Banners } from '../../../widgets/banners';
 import { Breadcrumbs } from '../../../widgets/breadcrumbs';
+import CatalogCards from './catalog-cards/catalog-cards';
 import CatalogFilter from './catalog-filter/catalog-filter';
 import CatalogSort from './catalog-sort/catalog-sort';
 
@@ -22,6 +23,7 @@ function Catalog() {
 
               <div className="catalog__content">
                 <CatalogSort />
+                <CatalogCards />
               </div>
             </div>
           </div>
