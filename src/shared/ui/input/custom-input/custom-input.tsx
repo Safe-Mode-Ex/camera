@@ -1,4 +1,5 @@
-import { InputType } from '../../../enums/input-type';
+import { InputType } from '../../../enums';
+import './custom-input.css';
 
 type Props = {
   type: string;
