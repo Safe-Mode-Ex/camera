@@ -1,12 +1,14 @@
+import classNames from 'classnames';
 import { ReactNode } from 'react';
 
 type Props = {
+  className?: string;
   children: ReactNode;
 };
 
-function TonalButton({ children }: Props) {
+function TonalButton({ className, children }: Props) {
   return (
-    <button className="btn" type="reset">{ children }</button>
+    <button className={classNames('btn', className)} type="reset">{ children }</button>
   );
 }
 

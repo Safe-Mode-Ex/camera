@@ -1,12 +1,14 @@
+import classNames from 'classnames';
 import { ReactNode } from 'react';
 
 type Props = {
   children: ReactNode;
+  className?: string;
 };
 
-function FilledButton({ children }: Props) {
+function FilledButton({ className, children }: Props) {
   return (
-    <button className="btn btn--purple" type="button">
+    <button className={classNames('btn btn--purple', className)} type="button">
       {children}
     </button>
   );

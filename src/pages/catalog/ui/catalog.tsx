@@ -1,11 +1,36 @@
 import { Banners } from '../../../widgets/banners';
 import { Breadcrumbs } from '../../../widgets/breadcrumbs';
+import CatalogCards from './catalog-cards/catalog-cards';
+import CatalogFilter from './catalog-filter/catalog-filter';
+import CatalogPagination from './catalog-pagination/catalog-pagination';
+import CatalogSort from './catalog-sort/catalog-sort';
 
 function Catalog() {
   return (
     <main>
       <Banners />
-      <Breadcrumbs />
+
+      <div className="page-content">
+        <Breadcrumbs />
+
+        <section className="catalog">
+          <div className="container">
+            <h1 className="title title--h2">Каталог фото- и видеотехники</h1>
+
+            <div className="page-content__columns">
+              <div className="catalog__aside">
+                <CatalogFilter />
+              </div>
+
+              <div className="catalog__content">
+                <CatalogSort />
+                <CatalogCards />
+                <CatalogPagination />
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
   );
 }
