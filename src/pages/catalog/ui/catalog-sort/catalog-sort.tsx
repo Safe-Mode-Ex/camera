@@ -1,5 +1,6 @@
-import CatalogSortOrder from './catalog-sort-order';
-import CatalogSortType from './catalog-sort-type';
+import CatalogSortOrder from './catalog-sort-order/catalog-sort-order';
+import CatalogSortType from './catalog-sort-type/catalog-sort-type';
+import './catalog-sort.css';
 
 function CatalogSort() {
   return (

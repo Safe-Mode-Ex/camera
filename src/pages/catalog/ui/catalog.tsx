@@ -1,7 +1,7 @@
 import { Banners } from '../../../widgets/banners';
 import { Breadcrumbs } from '../../../widgets/breadcrumbs';
-import CatalogFilter from './catalog-filter';
-import CatalogSort from './catalog-sort';
+import CatalogFilter from './catalog-filter/catalog-filter';
+import CatalogSort from './catalog-sort/catalog-sort';
 
 function Catalog() {
   return (
