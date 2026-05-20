@@ -1,2 +1,2 @@
-export { AppRoute } from './app-route';
-export { InputType } from './input-type';
+export {AppRoute} from './app-route';
+export {InputType} from './input-type';

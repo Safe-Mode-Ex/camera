@@ -1,1 +1,1 @@
-export { default as RateStars } from './rate-stars';
+export {default as RateStars} from './RateStars';

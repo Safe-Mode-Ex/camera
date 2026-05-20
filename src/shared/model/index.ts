@@ -1,1 +1,1 @@
-export type { ImageSource } from './image-source';
+export type {ImageSource} from './image-source';
