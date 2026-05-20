@@ -1,4 +1,4 @@
-export type ImageSource = {
+export interface ImageSource {
   previewImg: string;
   previewImg2x: string;
   previewImgWebp: string;

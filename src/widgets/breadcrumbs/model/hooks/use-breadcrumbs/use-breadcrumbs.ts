@@ -1,12 +1,12 @@
-import { useLocation } from 'react-router-dom';
-import { Breadcrumb } from '../../types/breadcrumb';
-import { BreadcrumbTitle } from '../../../enums/breadcrumb-title';
+import {useLocation} from 'react-router-dom';
+import type {Breadcrumb} from '../../types/breadcrumb';
+import {BreadcrumbTitle} from '../../../enums/breadcrumb-title';
 
 export const useBreadcrumbs = (): Breadcrumb[] => {
-  const { pathname } = useLocation();
+  const {pathname} = useLocation();
   const pathNames = pathname.split('/');
 
-  return pathNames.reduce((result, path, index, array) => {
+  return pathNames.reduce<Breadcrumb[]>((result, path, index, array) => {
     const isLast = array.length - 1 === index;
     const isFirst = index === 0;
     const prevHref = isFirst ? '' : result[index - 1].href;
@@ -17,5 +17,5 @@ export const useBreadcrumbs = (): Breadcrumb[] => {
       isLast,
     });
     return result;
-  }, [] as Breadcrumb[]);
+  }, []);
 };

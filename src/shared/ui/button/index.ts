@@ -1,4 +1,4 @@
-export { default as FilledButton } from './filled-button/filled-button';
-export { default as OutlinedButton } from './outlined-button/outlined-button';
-export { default as TextButton } from './text-button/text-button';
-export { default as TonalButton } from './tonal-button/tonal-button';
+export {default as FilledButton} from './filled-button/FilledButton';
+export {default as OutlinedButton} from './outlined-button/OutlinedButton';
+export {default as TextButton} from './text-button/TextButton';
+export {default as TonalButton} from './tonal-button/TonalButton';
