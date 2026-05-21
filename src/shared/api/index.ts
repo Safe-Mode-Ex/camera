@@ -1,1 +1,1 @@
-export {createApi} from './api';
+export {httpApi} from './api';

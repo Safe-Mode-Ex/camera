@@ -1,7 +1,6 @@
 import {Logo} from '@/shared/ui/logo';
-import BasketLink from './basket-link/BasketLink';
-import FormSearch from './form-search/FormSearch';
-import MainNav from './main-nav/MainNav';
+import {MainNav, FormSearch, BasketLink} from './components';
+import {mainNavItems} from './data';
 import './Header.css';
 
 function Header() {
@@ -9,7 +8,7 @@ function Header() {
     <header className="header" id="header">
       <div className="container">
         <Logo className="header__logo" />
-        <MainNav className="header__main-nav" />
+        <MainNav className="header__main-nav" links={mainNavItems} />
         <FormSearch />
         <BasketLink />
       </div>

@@ -9,7 +9,7 @@ const REQUEST_TIMEOUT = 5000;
 
 const shouldDisplayError = (response: AxiosResponse) => StatusCodeMapping[response.status];
 
-export const createApi = (): AxiosInstance => {
+const createApi = (): AxiosInstance => {
   const api = axios.create({
     baseURL: VITE_API_URL,
     timeout: REQUEST_TIMEOUT,
@@ -37,3 +37,5 @@ export const createApi = (): AxiosInstance => {
 
   return api;
 };
+
+export const httpApi = createApi();

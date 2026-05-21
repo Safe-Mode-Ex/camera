@@ -1,0 +1,15 @@
+import type {Product, ProductDetails} from '@/shared/dto';
+import {Domen} from '../enums';
+import {httpApi} from '@/shared/api';
+
+export const getProducts = async () => httpApi.get<Product[]>(Domen.Cameras).then(({data}) => data);
+
+export const getProductById = async (productId: number) => {
+  const entityId = productId.toString();
+  return httpApi.get<ProductDetails>(`DOMEN_ENDPOINT/${entityId}`).then(({data}) => data);
+};
+
+export const getSimilarProducts = async (productId: number) => {
+  const entityId = productId.toString();
+  return httpApi.get<Product[]>(`${Domen.Cameras}/${entityId}${Domen.Similar}`);
+};
