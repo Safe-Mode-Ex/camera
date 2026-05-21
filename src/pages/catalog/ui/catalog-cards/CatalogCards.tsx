@@ -1,4 +1,4 @@
-import {ProductCard} from '../../../../entities/product-card';
+import {ProductCard} from '@/entities/product-card';
 import './CatalogCards.css';
 
 function CatalogCards() {

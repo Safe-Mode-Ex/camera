@@ -1,6 +1,6 @@
 import {useLocation} from 'react-router-dom';
-import type {Breadcrumb} from '../../types/breadcrumb';
 import {BreadcrumbTitle} from '../../../enums/breadcrumb-title';
+import type {Breadcrumb} from '../../types';
 
 export const useBreadcrumbs = (): Breadcrumb[] => {
   const {pathname} = useLocation();

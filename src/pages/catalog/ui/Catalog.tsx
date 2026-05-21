@@ -1,5 +1,5 @@
-import {Banners} from '../../../widgets/banners';
-import {Breadcrumbs} from '../../../widgets/breadcrumbs';
+import {Banners} from '@/widgets/banners';
+import {Breadcrumbs} from '@/widgets/breadcrumbs';
 import CatalogCards from './catalog-cards/CatalogCards';
 import CatalogFilter from './catalog-filter/CatalogFilter';
 import CatalogPagination from './catalog-pagination/CatalogPagination';

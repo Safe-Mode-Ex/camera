@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
-import {Icon} from '../../../shared/ui/icon';
+import {Icon} from '@/shared/ui/icon';
 import {useBreadcrumbs} from '../model/hooks/use-breadcrumbs/use-breadcrumbs';
-import './breadcrumbs.css';
+import './Breadcrumbs.css';
 
 function Breadcrumbs() {
   const breadcrumbs = useBreadcrumbs();

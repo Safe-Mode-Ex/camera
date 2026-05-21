@@ -1,5 +1,5 @@
 import {Link} from 'react-router';
-import {AppRoute} from '../../../../../shared/enums';
+import {AppRoute} from '@/shared/enums';
 
 function FooterNav() {
   return (

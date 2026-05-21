@@ -1,6 +1,6 @@
 import FooterInfo from './footer-info/FooterInfo';
 import FooterNav from './footer-nav/FooterNav';
-import './footer.css';
+import './Footer.css';
 
 function Footer() {
   return (

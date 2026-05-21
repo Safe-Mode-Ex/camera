@@ -1,4 +1,4 @@
-import type {InputType} from '../../../enums';
+import type {InputType} from '@/shared/enums';
 import './CustomInput.css';
 
 interface Props {
