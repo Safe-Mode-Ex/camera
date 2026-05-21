@@ -46,7 +46,7 @@
   -webkit-column-gap: 162px;
   -moz-column-gap: 162px;
   column-gap: 162px;
-  -ms-grid-columns: (150px) [3];
+  -ms-grid-columns: 150px 150px 150px;
   grid-template-columns: repeat(3, 150px);
   grid-row-gap: 40px;
 }

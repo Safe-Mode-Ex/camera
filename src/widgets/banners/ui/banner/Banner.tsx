@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import './banner.css';
+import './Banner.css';
 
 function Banner() {
   return (
