@@ -2,8 +2,8 @@ import {FilledButton, TextButton} from '@/shared/ui/button';
 import {PreviewImage} from '@/shared/ui/preview-image';
 import {Rate} from '@/shared/ui/rate';
 import type {Product} from '@/shared/dto';
+import {formatPrice} from '@/shared/lib/format-price';
 import './ProductCard.css';
-import {formatPrice} from '@/shared/lib/format-price/format-price';
 
 interface Props {
   product: Product;
