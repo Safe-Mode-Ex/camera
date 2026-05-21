@@ -1,4 +1,4 @@
-import {AppRoute} from '../../../shared/enums';
+import {AppRoute} from '@/shared/enums';
 
 export const BreadcrumbTitle: Record<string, string> = {
   [AppRoute.Main]: 'Главная',

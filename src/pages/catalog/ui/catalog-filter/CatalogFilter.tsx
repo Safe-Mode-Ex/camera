@@ -1,6 +1,6 @@
-import {InputType} from '../../../../shared/enums';
-import {TonalButton} from '../../../../shared/ui/button';
-import {CustomCheckbox, CustomInput, CustomRadio} from '../../../../shared/ui/input';
+import {InputType} from '@/shared/enums';
+import {TonalButton} from '@/shared/ui/button';
+import {CustomCheckbox, CustomInput, CustomRadio} from '@/shared/ui/input';
 import './CatalogFilter.css';
 
 function CatalogFilter() {

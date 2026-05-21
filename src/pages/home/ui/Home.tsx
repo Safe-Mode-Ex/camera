@@ -1,4 +1,4 @@
-import {Banners} from '../../../widgets/banners';
+import {Banners} from '@/widgets/banners';
 
 function Home() {
   return (

@@ -1,6 +1,6 @@
 import {Link} from 'react-router';
-import {Icon} from '../../../../../shared/ui/icon';
-import './social.css';
+import {Icon} from '@/shared/ui/icon';
+import './Social.css';
 
 function Social() {
   return (

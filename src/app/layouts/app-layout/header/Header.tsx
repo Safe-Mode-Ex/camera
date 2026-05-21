@@ -1,4 +1,4 @@
-import {Logo} from '../../../../shared/ui/logo';
+import {Logo} from '@/shared/ui/logo';
 import BasketLink from './basket-link/BasketLink';
 import FormSearch from './form-search/FormSearch';
 import './Header.css';

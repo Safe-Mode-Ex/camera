@@ -1,5 +1,5 @@
 import {Link} from 'react-router';
-import {Icon} from '../../../../../shared/ui/icon';
+import {Icon} from '@/shared/ui/icon';
 
 function BasketLink() {
   return (

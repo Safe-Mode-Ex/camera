@@ -1,4 +1,4 @@
-import {Breadcrumbs} from '../../../widgets/breadcrumbs';
+import {Breadcrumbs} from '@/widgets/breadcrumbs';
 
 function Product() {
   return (

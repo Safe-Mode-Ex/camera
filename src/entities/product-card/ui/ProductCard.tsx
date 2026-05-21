@@ -1,6 +1,6 @@
-import {FilledButton, TextButton} from '../../../shared/ui/button';
-import {PreviewImage} from '../../../shared/ui/preview-image';
-import {Rate} from '../../../shared/ui/rate';
+import {FilledButton, TextButton} from '@/shared/ui/button';
+import {PreviewImage} from '@/shared/ui/preview-image';
+import {Rate} from '@/shared/ui/rate';
 import './ProductCard.css';
 
 function ProductCard() {

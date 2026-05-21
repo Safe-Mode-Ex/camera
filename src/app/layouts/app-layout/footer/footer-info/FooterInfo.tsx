@@ -1,4 +1,4 @@
-import {Logo} from '../../../../../shared/ui/logo';
+import {Logo} from '@/shared/ui/logo';
 import Social from '../social/Social';
 
 function FooterInfo() {

@@ -4,10 +4,10 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools';
-import {Home} from '../pages/home';
+import {Home} from '@/pages/home';
 import {AppLayout} from './layouts';
-import {Catalog} from '../pages/catalog';
-import {AppRoute} from '../shared/enums';
+import {Catalog} from '@/pages/catalog';
+import {AppRoute} from '@/shared/enums';
 
 const queryClient = new QueryClient();
 

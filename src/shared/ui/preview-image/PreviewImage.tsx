@@ -1,4 +1,4 @@
-import type {ImageSource} from '../../model';
+import type {ImageSource} from '@/shared/model';
 
 interface Props {
   imageSource: ImageSource;
