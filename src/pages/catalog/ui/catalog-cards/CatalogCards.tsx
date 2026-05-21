@@ -1,10 +1,17 @@
-import {ProductCard} from '@/entities/product-card';
+import {ProductCard} from '@/entities/product-cards';
 import './CatalogCards.css';
+import type {Product} from '@/shared/dto';
 
-function CatalogCards() {
+interface Props {
+  products: Product[];
+}
+
+function CatalogCards({products}: Props) {
   return (
     <div className="cards catalog__cards">
-      <ProductCard />
+      {products.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))}
     </div>
   );
 }

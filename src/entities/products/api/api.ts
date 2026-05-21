@@ -1,15 +1,15 @@
-import type {AxiosInstance} from 'axios';
-import type {Product, ProductDetails} from './dto';
+import type {Product, ProductDetails} from '@/shared/dto';
 import {Domen} from '../enums';
+import {httpApi} from '@/shared/api';
 
-export const getProducts = async (api: AxiosInstance) => api.get<Product[]>(Domen.Cameras).then(({data}) => data);
+export const getProducts = async () => httpApi.get<Product[]>(Domen.Cameras).then(({data}) => data);
 
-export const getProductById = async (api: AxiosInstance, productId: number) => {
+export const getProductById = async (productId: number) => {
   const entityId = productId.toString();
-  return api.get<ProductDetails>(`DOMEN_ENDPOINT/${entityId}`).then(({data}) => data);
+  return httpApi.get<ProductDetails>(`DOMEN_ENDPOINT/${entityId}`).then(({data}) => data);
 };
 
-export const getSimilarProducts = async (api: AxiosInstance, productId: number) => {
+export const getSimilarProducts = async (productId: number) => {
   const entityId = productId.toString();
-  return api.get<Product[]>(`${Domen.Cameras}/${entityId}${Domen.Similar}`);
+  return httpApi.get<Product[]>(`${Domen.Cameras}/${entityId}${Domen.Similar}`);
 };

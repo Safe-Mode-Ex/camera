@@ -4,8 +4,8 @@ import {ReactQueryDevtools} from '@tanstack/react-query-devtools';
 import {Home} from '@/pages/home';
 import {Catalog} from '@/pages/catalog';
 import {AppRoute} from '@/shared/enums';
-import {queryClient} from './api';
 import {AppLayout} from './layouts';
+import {queryClient} from './providers';
 
 function App() {
   return (

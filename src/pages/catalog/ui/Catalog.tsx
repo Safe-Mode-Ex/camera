@@ -4,8 +4,15 @@ import CatalogCards from './catalog-cards/CatalogCards';
 import CatalogFilter from './catalog-filter/CatalogFilter';
 import CatalogPagination from './catalog-pagination/CatalogPagination';
 import CatalogSort from './catalog-sort/CatalogSort';
+import {useProducts} from '../model';
 
 function Catalog() {
+  const products = useProducts().data;
+
+  if (!products) {
+    return null;
+  }
+
   return (
     <main>
       <Banners />
@@ -24,7 +31,7 @@ function Catalog() {
 
               <div className="catalog__content">
                 <CatalogSort />
-                <CatalogCards />
+                <CatalogCards products={products} />
                 <CatalogPagination />
               </div>
             </div>

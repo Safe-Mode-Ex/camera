@@ -1,29 +1,38 @@
 import {FilledButton, TextButton} from '@/shared/ui/button';
 import {PreviewImage} from '@/shared/ui/preview-image';
 import {Rate} from '@/shared/ui/rate';
+import type {Product} from '@/shared/dto';
 import './ProductCard.css';
+import {formatPrice} from '@/shared/lib/format-price/format-price';
 
-function ProductCard() {
+interface Props {
+  product: Product;
+}
+
+function ProductCard({product}: Props) {
+  const {previewImg, previewImg2x, previewImgWebp, previewImgWebp2x, name, rating, reviewCount, price} = product;
+  const formattedPrice = formatPrice(price);
+
   return (
     <div className="product-card">
       <div className="product-card__img">
         <PreviewImage
           imageSource={{
-            previewImg: 'img/content/das-auge.jpg',
-            previewImg2x: 'img/content/das-auge@2x.jpg',
-            previewImgWebp: 'img/content/das-auge.webp',
-            previewImgWebp2x: 'img/content/das-auge@2x.webp',
+            previewImg,
+            previewImg2x,
+            previewImgWebp,
+            previewImgWebp2x,
           }}
           width="280"
           height="240"
-          alt="Ретрокамера «Das Auge IV»"
+          alt={name}
         />
       </div>
       <div className="product-card__info">
-        <Rate rating={3} total={23} className="product-card__rate" />
-        <p className="product-card__title">Ретрокамера «Das Auge IV»</p>
+        <Rate rating={rating} total={reviewCount} className="product-card__rate" />
+        <p className="product-card__title">{name}</p>
         <p className="product-card__price">
-          <span className="visually-hidden">Цена:</span>73 450 ₽
+          <span className="visually-hidden">Цена:</span>{formattedPrice} ₽
         </p>
       </div>
       <div className="product-card__buttons">
