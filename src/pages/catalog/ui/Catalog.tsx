@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import {Banners} from '@/widgets/banners';
 import {Breadcrumbs} from '@/widgets/breadcrumbs';
 import CatalogCards from './catalog-cards/CatalogCards';
@@ -6,39 +5,11 @@ import CatalogFilter from './catalog-filter/CatalogFilter';
 import CatalogPagination from './catalog-pagination/CatalogPagination';
 import CatalogSort from './catalog-sort/CatalogSort';
 import {useProducts} from '../model';
-import type {Sort} from '../model/types';
-import {SortOrder, SortType} from '../model/enums';
+import {useSort} from '../model/hooks';
 
 function Catalog() {
   const {data: products} = useProducts();
-  const [sort, setSort] = useState<Sort>({type: SortType.Price, order: SortOrder.Up});
-
-  if (!products) {
-    return null;
-  }
-
-  const preparedProducts = [...products].sort((firstProduct, secondProduct) => {
-    switch (sort.order) {
-      case SortOrder.Down:
-        return secondProduct[sort.type] - firstProduct[sort.type];
-      default:
-        return firstProduct[sort.type] - secondProduct[sort.type];
-    }
-  });
-
-  const changeSortTypeHandler = (type: SortType) => () => {
-    setSort((state) => ({
-      ...state,
-      type,
-    }));
-  };
-
-  const changeSortOrderHandler = (order: SortOrder) => () => {
-    setSort((state) => ({
-      ...state,
-      order,
-    }));
-  };
+  const [sorted, sort, changeSortTypeHandler, changeSortOrderHandler] = useSort(products);
 
   return (
     <main>
@@ -62,7 +33,7 @@ function Catalog() {
                   onSortTypeChange={changeSortTypeHandler}
                   onSortOrderChange={changeSortOrderHandler}
                 />
-                <CatalogCards products={preparedProducts} />
+                <CatalogCards products={sorted} />
                 <CatalogPagination />
               </div>
             </div>
