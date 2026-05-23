@@ -3,7 +3,7 @@ import {InputType} from '@/shared/enums';
 import {TonalButton} from '@/shared/ui/button';
 import {CustomCheckbox, CustomInput, CustomRadio} from '@/shared/ui/input';
 import {FilterCategory, FilterLevel, FilterType} from '../../model/enums';
-import type {ChangeCheckableHandler, Filter} from '../../model/types';
+import type {ChangeCheckableHandler, Filter, ResetFiltersHandler} from '../../model/types';
 import './CatalogFilter.css';
 
 interface Props {
@@ -12,9 +12,12 @@ interface Props {
   levels: FilterLevel[];
   onRadioChange: ChangeCheckableHandler<Filter>;
   onCheckboxChange: ChangeCheckableHandler<Omit<Filter, 'category'>>;
+  onResetFilters: ResetFiltersHandler;
 }
 
-function CatalogFilter({category, types, levels, onRadioChange, onCheckboxChange}: Props) {
+function CatalogFilter({category, types, levels, onRadioChange, onCheckboxChange, onResetFilters}: Props) {
+  const hasFilters = Boolean(category ?? (types.length || levels.length));
+
   return (
     <div className="catalog-filter">
       <form action="#">
@@ -138,7 +141,12 @@ function CatalogFilter({category, types, levels, onRadioChange, onCheckboxChange
           />
         </fieldset>
 
-        <TonalButton className="catalog-filter__reset-btn">Сбросить фильтры</TonalButton>
+        {hasFilters &&
+          <TonalButton
+            className="catalog-filter__reset-btn"
+            onClick={onResetFilters()}
+          >Сбросить фильтры
+          </TonalButton>}
       </form>
     </div>
   );

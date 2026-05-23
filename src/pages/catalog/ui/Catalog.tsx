@@ -9,7 +9,7 @@ import {useFilter, useSort} from '../model/hooks';
 
 function Catalog() {
   const {data: products} = useProducts();
-  const [filtered, activeFilter, changeRadioHandler, changeCheckboxHandler] = useFilter(products);
+  const [filtered, activeFilter, changeRadioHandler, changeCheckboxHandler, resetFiltersHandler] = useFilter(products);
   const [sorted, sort, changeSortTypeHandler, changeSortOrderHandler] = useSort(filtered);
 
   return (
@@ -29,6 +29,7 @@ function Catalog() {
                   {...activeFilter}
                   onRadioChange={changeRadioHandler}
                   onCheckboxChange={changeCheckboxHandler}
+                  onResetFilters={resetFiltersHandler}
                 />
               </div>
 

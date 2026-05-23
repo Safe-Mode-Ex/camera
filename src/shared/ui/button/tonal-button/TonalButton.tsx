@@ -1,14 +1,20 @@
 import classNames from 'classnames';
-import type {ReactNode} from 'react';
+import type {MouseEvent, ReactNode} from 'react';
 
 interface Props {
-  className?: string;
   children: ReactNode;
+  onClick: (evt: MouseEvent<HTMLButtonElement>) => void;
+  className?: string;
 }
 
-function TonalButton({className, children}: Props) {
+function TonalButton({className, children, onClick}: Props) {
   return (
-    <button className={classNames('btn', className)} type="reset">{ children }</button>
+    <button
+      className={classNames('btn', className)}
+      type="reset"
+      onClick={onClick}
+    >{children}
+    </button>
   );
 }
 
