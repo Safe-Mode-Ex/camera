@@ -82,6 +82,7 @@ function CatalogFilter({category, types, levels, onRadioChange, onCheckboxChange
             name="film"
             label="Плёночная"
             value={FilterType.Film}
+            disabled={category === FilterCategory.Video}
             checked={types.includes(FilterType.Film)}
             onChange={onCheckboxChange('types')}
           />
@@ -91,6 +92,7 @@ function CatalogFilter({category, types, levels, onRadioChange, onCheckboxChange
             name="snapshot"
             label="Моментальная"
             value={FilterType.Momentum}
+            disabled={category === FilterCategory.Video}
             checked={types.includes(FilterType.Momentum)}
             onChange={onCheckboxChange('types')}
           />
