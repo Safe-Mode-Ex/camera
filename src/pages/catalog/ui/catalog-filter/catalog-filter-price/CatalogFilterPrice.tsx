@@ -1,6 +1,6 @@
-import type {ChangeEvent} from 'react';
 import {InputType} from '@/shared/enums';
 import {CustomInput} from '@/shared/ui/input';
+import {usePrice} from '@/pages/catalog/model/hooks';
 
 interface Props {
   priceRange: [number, number];
@@ -10,6 +10,14 @@ function CatalogFilterPrice({priceRange}: Props) {
   const [minPrice, maxPrice] = priceRange;
   const minPricePlaceholder = minPrice.toString() || 'от';
   const maxPricePlaceholder = maxPrice.toString() || 'до';
+  const [
+    minValue,
+    maxValue,
+    handleMinPriceChange,
+    handleMaxPriceChange,
+    handleMinPriceBlur,
+    handleMaxPriceBlur,
+  ] = usePrice(minPrice, maxPrice);
 
   return (
     <fieldset className="catalog-filter__block">
@@ -20,17 +28,17 @@ function CatalogFilterPrice({priceRange}: Props) {
           type={InputType.number}
           name="price"
           placeholder={minPricePlaceholder}
-          onChange={({target}: ChangeEvent<HTMLInputElement>) => {
-            console.log(target.value);
-          }}
+          value={minValue || ''}
+          onChange={handleMinPriceChange}
+          onBlur={handleMinPriceBlur}
         />
         <CustomInput
           type={InputType.number}
           name="priceUp"
+          value={maxValue || ''}
           placeholder={maxPricePlaceholder}
-          onChange={({target}: ChangeEvent<HTMLInputElement>) => {
-            console.log(target.value);
-          }}
+          onChange={handleMaxPriceChange}
+          onBlur={handleMaxPriceBlur}
         />
       </div>
     </fieldset>

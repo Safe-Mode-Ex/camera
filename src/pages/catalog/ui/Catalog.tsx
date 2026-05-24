@@ -12,7 +12,7 @@ function Catalog() {
   const {data: products} = useProducts();
   const [filteredProducts, activeFilter, changeRadioHandler, changeCheckboxHandler, resetFiltersHandler] = useFilter(products);
   const [sortedProducts, sort, changeSortTypeHandler, changeSortOrderHandler] = useSort(filteredProducts);
-  const priceRange = getPriceRange(products);
+  const priceRange = getPriceRange(filteredProducts);
 
   return (
     <main>
