@@ -16,7 +16,7 @@ export const useFilter = (products: Product[] = []): [
   const initialFilter = {category: null, types: [], levels: []};
 
   const [activeFilter, setActiveFilter] = useState<Filter>(initialFilter);
-  const filtered = [...products].filter(({category, type, level}) => {
+  const filteredProducts = [...products].filter(({category, type, level}) => {
     const {category: filterCategory, types: filterTypes, levels: filterLevels} = activeFilter;
     const isProperCategory = !filterCategory || categoryMap[filterCategory] === category;
 
@@ -53,7 +53,7 @@ export const useFilter = (products: Product[] = []): [
   };
 
   return [
-    filtered,
+    filteredProducts,
     activeFilter,
     changeRadioHandler,
     changeCheckboxHandler,

@@ -5,12 +5,14 @@ import CatalogFilter from './catalog-filter/CatalogFilter';
 import CatalogPagination from './catalog-pagination/CatalogPagination';
 import CatalogSort from './catalog-sort/CatalogSort';
 import {useProducts} from '../model';
+import {getPriceRange} from '../model/utils';
 import {useFilter, useSort} from '../model/hooks';
 
 function Catalog() {
   const {data: products} = useProducts();
-  const [filtered, activeFilter, changeRadioHandler, changeCheckboxHandler, resetFiltersHandler] = useFilter(products);
-  const [sorted, sort, changeSortTypeHandler, changeSortOrderHandler] = useSort(filtered);
+  const [filteredProducts, activeFilter, changeRadioHandler, changeCheckboxHandler, resetFiltersHandler] = useFilter(products);
+  const [sortedProducts, sort, changeSortTypeHandler, changeSortOrderHandler] = useSort(filteredProducts);
+  const priceRange = getPriceRange(products);
 
   return (
     <main>
@@ -27,6 +29,7 @@ function Catalog() {
               <div className="catalog__aside">
                 <CatalogFilter
                   {...activeFilter}
+                  priceRange={priceRange}
                   onRadioChange={changeRadioHandler}
                   onCheckboxChange={changeCheckboxHandler}
                   onResetFilters={resetFiltersHandler}
@@ -39,7 +42,7 @@ function Catalog() {
                   onSortTypeChange={changeSortTypeHandler}
                   onSortOrderChange={changeSortOrderHandler}
                 />
-                <CatalogCards products={sorted} />
+                <CatalogCards products={sortedProducts} />
                 <CatalogPagination />
               </div>
             </div>

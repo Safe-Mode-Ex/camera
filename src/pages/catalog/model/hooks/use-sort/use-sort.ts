@@ -1,19 +1,13 @@
 import {useState} from 'react';
 import type {Product} from '@/shared/dto';
-import {SortType, SortOrder} from '../../enums';
+import type {SortType, SortOrder} from '../../enums';
 import type {Sort, SortOrderHandler, SortTypeHandler} from '../../types';
+import {sortProducts} from '../../utils';
+import {priceUpSort} from '../../config';
 
 export const useSort = (products: Product[] = []): [Product[], Sort, SortTypeHandler, SortOrderHandler] => {
-  const [sort, setSort] = useState<Sort>({type: SortType.Price, order: SortOrder.Up});
-
-  const preparedProducts = [...products].sort((firstProduct, secondProduct) => {
-    switch (sort.order) {
-      case SortOrder.Down:
-        return secondProduct[sort.type] - firstProduct[sort.type];
-      default:
-        return firstProduct[sort.type] - secondProduct[sort.type];
-    }
-  });
+  const [sort, setSort] = useState<Sort>(priceUpSort);
+  const sortedProducts = sortProducts(products, sort);
 
   const changeSortTypeHandler = (type: SortType) => () => {
     setSort((state) => ({
@@ -29,5 +23,5 @@ export const useSort = (products: Product[] = []): [Product[], Sort, SortTypeHan
     }));
   };
 
-  return [preparedProducts, sort, changeSortTypeHandler, changeSortOrderHandler];
+  return [sortedProducts, sort, changeSortTypeHandler, changeSortOrderHandler];
 };

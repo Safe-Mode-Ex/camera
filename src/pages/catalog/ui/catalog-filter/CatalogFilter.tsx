@@ -1,21 +1,29 @@
-import type {ChangeEvent} from 'react';
-import {InputType} from '@/shared/enums';
 import {TonalButton} from '@/shared/ui/button';
-import {CustomCheckbox, CustomInput, CustomRadio} from '@/shared/ui/input';
+import {CustomCheckbox, CustomRadio} from '@/shared/ui/input';
 import {FilterCategory, FilterLevel, FilterType} from '../../model/enums';
 import type {ChangeCheckableHandler, Filter, ResetFiltersHandler} from '../../model/types';
+import CatalogFilterPrice from './catalog-filter-price/CatalogFilterPrice';
 import './CatalogFilter.css';
 
 interface Props {
   category: FilterCategory | null;
   types: FilterType[];
   levels: FilterLevel[];
+  priceRange: [number, number];
   onRadioChange: ChangeCheckableHandler<Filter>;
   onCheckboxChange: ChangeCheckableHandler<Omit<Filter, 'category'>>;
   onResetFilters: ResetFiltersHandler;
 }
 
-function CatalogFilter({category, types, levels, onRadioChange, onCheckboxChange, onResetFilters}: Props) {
+function CatalogFilter({
+  category,
+  types,
+  levels,
+  onRadioChange,
+  onCheckboxChange,
+  onResetFilters,
+  priceRange,
+}: Props) {
   const hasFilters = Boolean(category ?? (types.length || levels.length));
 
   return (
@@ -23,28 +31,7 @@ function CatalogFilter({category, types, levels, onRadioChange, onCheckboxChange
       <form action="#">
         <h2 className="visually-hidden">Фильтр</h2>
 
-        <fieldset className="catalog-filter__block">
-          <legend className="title title--h5">Цена, ₽</legend>
-
-          <div className="catalog-filter__price-range">
-            <CustomInput
-              type={InputType.number}
-              name="price"
-              placeholder="от"
-              onChange={({target}: ChangeEvent<HTMLInputElement>) => {
-                console.log(target.value);
-              }}
-            />
-            <CustomInput
-              type={InputType.number}
-              name="priceUp"
-              placeholder="до"
-              onChange={({target}: ChangeEvent<HTMLInputElement>) => {
-                console.log(target.value);
-              }}
-            />
-          </div>
-        </fieldset>
+        <CatalogFilterPrice priceRange={priceRange} />
 
         <fieldset className="catalog-filter__block">
           <legend className="title title--h5">Категория</legend>
