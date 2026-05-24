@@ -7,6 +7,7 @@ import CatalogSort from './catalog-sort/CatalogSort';
 import {useProducts} from '../model';
 import {getPriceRange} from '../model/utils';
 import {useFilter, usePriceFilter, useSort} from '../model/hooks';
+import type {MouseEvent} from 'react';
 
 function Catalog() {
   const {data: products} = useProducts();
@@ -15,12 +16,13 @@ function Catalog() {
     activeFilter,
     changeRadioHandler,
     changeCheckboxHandler,
-    resetFiltersHandler,
+    resetFilter,
   ] = useFilter(products);
   const [
     priceRangedProducts,
     setMinPriceValue,
     setMaxPriceValue,
+    resetPriceFilter,
   ] = usePriceFilter(filteredProducts);
   const [
     sortedProducts,
@@ -30,6 +32,11 @@ function Catalog() {
   ] = useSort(priceRangedProducts);
 
   const priceRange = getPriceRange(filteredProducts);
+
+  const handleFiltersReset = (evt: MouseEvent<HTMLButtonElement>) => {
+    resetFilter(evt);
+    resetPriceFilter();
+  };
 
   return (
     <main>
@@ -51,7 +58,7 @@ function Catalog() {
                   priceRange={priceRange}
                   onRadioChange={changeRadioHandler}
                   onCheckboxChange={changeCheckboxHandler}
-                  onResetFilters={resetFiltersHandler}
+                  onResetFilters={handleFiltersReset}
                 />
               </div>
 

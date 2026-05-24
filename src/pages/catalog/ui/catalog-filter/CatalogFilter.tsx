@@ -1,8 +1,9 @@
-import type {Dispatch, SetStateAction} from 'react';
+import type {Dispatch, MouseEvent, SetStateAction} from 'react';
 import {TonalButton} from '@/shared/ui/button';
 import {CustomCheckbox, CustomRadio} from '@/shared/ui/input';
 import {FilterCategory, FilterLevel, FilterType} from '../../model/enums';
 import type {ChangeCheckableHandler, Filter, ResetFiltersHandler} from '../../model/types';
+import {usePrice} from '../../model/hooks';
 import CatalogFilterPrice from './catalog-filter-price/CatalogFilterPrice';
 import './CatalogFilter.css';
 
@@ -29,7 +30,23 @@ function CatalogFilter({
   setMinPriceValue,
   setMaxPriceValue,
 }: Props) {
+  const [minPrice, maxPrice] = priceRange;
+  const [
+    valueRange,
+    handleMinPriceChange,
+    handleMaxPriceChange,
+    handleMinPriceBlur,
+    handleMaxPriceBlur,
+    resetPriceValues,
+  ] = usePrice(minPrice, maxPrice, setMinPriceValue, setMaxPriceValue);
   const hasFilters = Boolean(category ?? (types.length || levels.length));
+  const hasPrice = valueRange.some((value) => Boolean(value));
+  const isResetBtnShown = hasFilters || hasPrice;
+
+  const handleFiltersReset = (evt: MouseEvent<HTMLButtonElement>) => {
+    resetPriceValues();
+    onResetFilters(evt);
+  };
 
   return (
     <div className="catalog-filter">
@@ -38,8 +55,11 @@ function CatalogFilter({
 
         <CatalogFilterPrice
           priceRange={priceRange}
-          setMinPriceValue={setMinPriceValue}
-          setMaxPriceValue={setMaxPriceValue}
+          valueRange={valueRange}
+          handleMinPriceChange={handleMinPriceChange}
+          handleMaxPriceChange={handleMaxPriceChange}
+          handleMinPriceBlur={handleMinPriceBlur}
+          handleMaxPriceBlur={handleMaxPriceBlur}
         />
 
         <fieldset className="catalog-filter__block">
@@ -137,10 +157,10 @@ function CatalogFilter({
           />
         </fieldset>
 
-        {hasFilters &&
+        {isResetBtnShown &&
           <TonalButton
             className="catalog-filter__reset-btn"
-            onClick={onResetFilters()}
+            onClick={handleFiltersReset}
           >Сбросить фильтры
           </TonalButton>}
       </form>

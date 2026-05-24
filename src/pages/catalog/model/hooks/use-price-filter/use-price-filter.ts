@@ -6,6 +6,7 @@ export const usePriceFilter = (products: Product[]): [
   Product[],
   Dispatch<SetStateAction<number | null>>,
   Dispatch<SetStateAction<number | null>>,
+  () => void,
 ] => {
   const [minPriceValue, setMinPriceValue] = useState<number | null>(null);
   const [maxPriceValue, setMaxPriceValue] = useState<number | null>(null);
@@ -16,5 +17,10 @@ export const usePriceFilter = (products: Product[]): [
     return maxPriceValue ? isFitMinPrice && maxPriceValue >= price : isFitMinPrice;
   });
 
-  return [priceRangedProducts, setMinPriceValue, setMaxPriceValue];
+  const resetPriceFilter = () => {
+    setMinPriceValue(null);
+    setMaxPriceValue(null);
+  };
+
+  return [priceRangedProducts, setMinPriceValue, setMaxPriceValue, resetPriceFilter];
 };

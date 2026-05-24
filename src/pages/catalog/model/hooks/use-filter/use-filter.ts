@@ -3,7 +3,7 @@ import {useState} from 'react';
 import type {Product} from '@/shared/dto';
 import type {FilterType, FilterLevel} from '../../enums';
 import {categoryMap, typeMap, levelMap} from '../../maps';
-import type {ChangeCheckableHandler, Filter, ResetFiltersHandler} from '../../types';
+import type {ChangeCheckableHandler, Filter} from '../../types';
 import {hasProperFilter} from '../../utils';
 
 export const useFilter = (products: Product[] = []): [
@@ -11,7 +11,7 @@ export const useFilter = (products: Product[] = []): [
   Filter,
   ChangeCheckableHandler<Filter>,
   ChangeCheckableHandler<Omit<Filter, 'category'>>,
-  ResetFiltersHandler,
+  (evt: MouseEvent<HTMLButtonElement>) => void,
 ] => {
   const initialFilter = {category: null, types: [], levels: []};
 
@@ -47,7 +47,7 @@ export const useFilter = (products: Product[] = []): [
       }));
     };
 
-  const resetFiltersHandler = () => (evt: MouseEvent<HTMLButtonElement>) => {
+  const resetFilters = (evt: MouseEvent<HTMLButtonElement>) => {
     evt.preventDefault();
     setActiveFilter(initialFilter);
   };
@@ -57,6 +57,6 @@ export const useFilter = (products: Product[] = []): [
     activeFilter,
     changeRadioHandler,
     changeCheckboxHandler,
-    resetFiltersHandler,
+    resetFilters,
   ];
 };

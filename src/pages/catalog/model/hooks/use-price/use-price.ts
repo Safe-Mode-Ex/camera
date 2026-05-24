@@ -7,15 +7,30 @@ export const usePrice = (
   setMinPriceValue: Dispatch<SetStateAction<number | null>>,
   setMaxPriceValue: Dispatch<SetStateAction<number | null>>,
 ): [
-  number,
-  number,
+  [number, number],
   ({target}: ChangeEvent<HTMLInputElement>) => void,
   ({target}: ChangeEvent<HTMLInputElement>) => void,
   ({target}: FocusEvent<HTMLInputElement>) => void,
   ({target}: FocusEvent<HTMLInputElement>) => void,
+  () => void,
 ] => {
   const [minValue, setMinValue] = useState<number>(0);
   const [maxValue, setMaxValue] = useState<number>(0);
+
+  const setMinimum = (value: number) => {
+    setMinValue(value);
+    setMinPriceValue(value);
+  };
+
+  const setMaximum = (value: number) => {
+    setMaxValue(value);
+    setMaxPriceValue(value);
+  };
+
+  const resetPriceValues = () => {
+    setMinValue(0);
+    setMaxValue(0);
+  };
 
   const handleMinPriceChange = ({target}: ChangeEvent<HTMLInputElement>) => {
     setMinValue(Number(target.value));
@@ -34,20 +49,17 @@ export const usePrice = (
     const value = Number(target.value);
 
     if (maxValue && value > maxValue) {
-      setMinValue(maxValue);
-      setMinPriceValue(maxValue);
+      setMinimum(maxValue);
       return;
     }
 
     if (value < minPrice) {
-      setMinValue(minPrice);
-      setMinPriceValue(minPrice);
+      setMinimum(minPrice);
       return;
     }
 
     if (value > maxPrice) {
-      setMinValue(maxPrice);
-      setMinPriceValue(maxPrice);
+      setMinimum(maxPrice);
       return;
     }
 
@@ -63,20 +75,17 @@ export const usePrice = (
     const value = Number(target.value);
 
     if (minValue && value < minValue) {
-      setMaxValue(minValue);
-      setMaxPriceValue(minValue);
+      setMaximum(minValue);
       return;
     }
 
     if (value < minPrice) {
-      setMaxValue(minPrice);
-      setMaxPriceValue(minPrice);
+      setMaximum(minPrice);
       return;
     }
 
     if (value > maxPrice) {
-      setMaxValue(maxPrice);
-      setMaxPriceValue(maxPrice);
+      setMaximum(maxPrice);
       return;
     }
 
@@ -84,11 +93,11 @@ export const usePrice = (
   };
 
   return [
-    minValue,
-    maxValue,
+    [minValue, maxValue],
     handleMinPriceChange,
     handleMaxPriceChange,
     handleMinPriceBlur,
     handleMaxPriceBlur,
+    resetPriceValues,
   ];
 };
