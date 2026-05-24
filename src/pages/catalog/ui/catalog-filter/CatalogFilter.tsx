@@ -1,3 +1,4 @@
+import type {Dispatch, SetStateAction} from 'react';
 import {TonalButton} from '@/shared/ui/button';
 import {CustomCheckbox, CustomRadio} from '@/shared/ui/input';
 import {FilterCategory, FilterLevel, FilterType} from '../../model/enums';
@@ -13,6 +14,8 @@ interface Props {
   onRadioChange: ChangeCheckableHandler<Filter>;
   onCheckboxChange: ChangeCheckableHandler<Omit<Filter, 'category'>>;
   onResetFilters: ResetFiltersHandler;
+  setMinPriceValue: Dispatch<SetStateAction<number | null>>;
+  setMaxPriceValue: Dispatch<SetStateAction<number | null>>;
 }
 
 function CatalogFilter({
@@ -23,6 +26,8 @@ function CatalogFilter({
   onCheckboxChange,
   onResetFilters,
   priceRange,
+  setMinPriceValue,
+  setMaxPriceValue,
 }: Props) {
   const hasFilters = Boolean(category ?? (types.length || levels.length));
 
@@ -31,7 +36,11 @@ function CatalogFilter({
       <form action="#">
         <h2 className="visually-hidden">Фильтр</h2>
 
-        <CatalogFilterPrice priceRange={priceRange} />
+        <CatalogFilterPrice
+          priceRange={priceRange}
+          setMinPriceValue={setMinPriceValue}
+          setMaxPriceValue={setMaxPriceValue}
+        />
 
         <fieldset className="catalog-filter__block">
           <legend className="title title--h5">Категория</legend>

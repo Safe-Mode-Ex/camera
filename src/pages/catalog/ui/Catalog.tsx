@@ -6,12 +6,29 @@ import CatalogPagination from './catalog-pagination/CatalogPagination';
 import CatalogSort from './catalog-sort/CatalogSort';
 import {useProducts} from '../model';
 import {getPriceRange} from '../model/utils';
-import {useFilter, useSort} from '../model/hooks';
+import {useFilter, usePriceFilter, useSort} from '../model/hooks';
 
 function Catalog() {
   const {data: products} = useProducts();
-  const [filteredProducts, activeFilter, changeRadioHandler, changeCheckboxHandler, resetFiltersHandler] = useFilter(products);
-  const [sortedProducts, sort, changeSortTypeHandler, changeSortOrderHandler] = useSort(filteredProducts);
+  const [
+    filteredProducts,
+    activeFilter,
+    changeRadioHandler,
+    changeCheckboxHandler,
+    resetFiltersHandler,
+  ] = useFilter(products);
+  const [
+    priceRangedProducts,
+    setMinPriceValue,
+    setMaxPriceValue,
+  ] = usePriceFilter(filteredProducts);
+  const [
+    sortedProducts,
+    sort,
+    changeSortTypeHandler,
+    changeSortOrderHandler,
+  ] = useSort(priceRangedProducts);
+
   const priceRange = getPriceRange(filteredProducts);
 
   return (
@@ -29,6 +46,8 @@ function Catalog() {
               <div className="catalog__aside">
                 <CatalogFilter
                   {...activeFilter}
+                  setMinPriceValue={setMinPriceValue}
+                  setMaxPriceValue={setMaxPriceValue}
                   priceRange={priceRange}
                   onRadioChange={changeRadioHandler}
                   onCheckboxChange={changeCheckboxHandler}

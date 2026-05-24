@@ -1,12 +1,15 @@
+import type {Dispatch, SetStateAction} from 'react';
 import {InputType} from '@/shared/enums';
 import {CustomInput} from '@/shared/ui/input';
 import {usePrice} from '@/pages/catalog/model/hooks';
 
 interface Props {
   priceRange: [number, number];
+  setMinPriceValue: Dispatch<SetStateAction<number | null>>;
+  setMaxPriceValue: Dispatch<SetStateAction<number | null>>;
 }
 
-function CatalogFilterPrice({priceRange}: Props) {
+function CatalogFilterPrice({priceRange, setMinPriceValue, setMaxPriceValue}: Props) {
   const [minPrice, maxPrice] = priceRange;
   const minPricePlaceholder = minPrice.toString() || 'от';
   const maxPricePlaceholder = maxPrice.toString() || 'до';
@@ -17,7 +20,7 @@ function CatalogFilterPrice({priceRange}: Props) {
     handleMaxPriceChange,
     handleMinPriceBlur,
     handleMaxPriceBlur,
-  ] = usePrice(minPrice, maxPrice);
+  ] = usePrice(minPrice, maxPrice, setMinPriceValue, setMaxPriceValue);
 
   return (
     <fieldset className="catalog-filter__block">
