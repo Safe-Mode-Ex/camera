@@ -5,13 +5,38 @@ import CatalogFilter from './catalog-filter/CatalogFilter';
 import CatalogPagination from './catalog-pagination/CatalogPagination';
 import CatalogSort from './catalog-sort/CatalogSort';
 import {useProducts} from '../model';
+import {getPriceRange} from '../model/utils';
+import {useFilter, usePriceFilter, useSort} from '../model/hooks';
+import type {MouseEvent} from 'react';
 
 function Catalog() {
-  const products = useProducts().data;
+  const {data: products} = useProducts();
+  const [
+    filteredProducts,
+    activeFilter,
+    changeRadioHandler,
+    changeCheckboxHandler,
+    resetFilter,
+  ] = useFilter(products);
+  const [
+    priceRangedProducts,
+    setMinPriceValue,
+    setMaxPriceValue,
+    resetPriceFilter,
+  ] = usePriceFilter(filteredProducts);
+  const [
+    sortedProducts,
+    sort,
+    changeSortTypeHandler,
+    changeSortOrderHandler,
+  ] = useSort(priceRangedProducts);
 
-  if (!products) {
-    return null;
-  }
+  const priceRange = getPriceRange(filteredProducts);
+
+  const handleFiltersReset = (evt: MouseEvent<HTMLButtonElement>) => {
+    resetFilter(evt);
+    resetPriceFilter();
+  };
 
   return (
     <main>
@@ -26,12 +51,24 @@ function Catalog() {
 
             <div className="page-content__columns">
               <div className="catalog__aside">
-                <CatalogFilter />
+                <CatalogFilter
+                  {...activeFilter}
+                  setMinPriceValue={setMinPriceValue}
+                  setMaxPriceValue={setMaxPriceValue}
+                  priceRange={priceRange}
+                  onRadioChange={changeRadioHandler}
+                  onCheckboxChange={changeCheckboxHandler}
+                  onResetFilters={handleFiltersReset}
+                />
               </div>
 
               <div className="catalog__content">
-                <CatalogSort />
-                <CatalogCards products={products} />
+                <CatalogSort
+                  sort={sort}
+                  onSortTypeChange={changeSortTypeHandler}
+                  onSortOrderChange={changeSortOrderHandler}
+                />
+                <CatalogCards products={sortedProducts} />
                 <CatalogPagination />
               </div>
             </div>

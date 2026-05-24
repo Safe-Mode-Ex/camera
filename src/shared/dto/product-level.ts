@@ -1,5 +1,5 @@
 export enum ProductLevel {
-  Newby = 'Нулевой',
+  Zero = 'Нулевой',
   Beginner = 'Любительский',
   Professional = 'Профессиональный',
 }
