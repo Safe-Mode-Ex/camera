@@ -24,7 +24,6 @@ function CatalogFilterPrice({
   const minPricePlaceholder = minPrice.toString() || 'от';
   const maxPricePlaceholder = maxPrice.toString() || 'до';
 
-
   return (
     <fieldset className="catalog-filter__block">
       <legend className="title title--h5">Цена, ₽</legend>

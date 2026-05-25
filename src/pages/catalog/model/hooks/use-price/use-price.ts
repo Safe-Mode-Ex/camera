@@ -1,5 +1,6 @@
 import type {ChangeEvent, Dispatch, FocusEvent, SetStateAction} from 'react';
 import {useState} from 'react';
+import {useUpdatePrice} from '..';
 
 export const usePrice = (
   minPrice: number,
@@ -16,6 +17,14 @@ export const usePrice = (
 ] => {
   const [minValue, setMinValue] = useState<number>(0);
   const [maxValue, setMaxValue] = useState<number>(0);
+
+  /*
+    TODO: подумать, нудно ли здесь жто поведение
+    За: цена меняется в диапазоне, который задал клиент
+    Против: пользователь задал цену, а мы ее менем без его воли
+  */
+  useUpdatePrice(minPrice, maxPrice, setMinValue, setMaxValue);
+  // конец TODO
 
   const setMinimum = (value: number) => {
     setMinValue(value);
