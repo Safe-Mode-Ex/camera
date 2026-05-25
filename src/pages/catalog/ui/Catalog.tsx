@@ -1,13 +1,12 @@
+import {type MouseEvent} from 'react';
 import {Banners} from '@/widgets/banners';
 import {Breadcrumbs} from '@/widgets/breadcrumbs';
+import {getPriceRange} from '../model/utils';
+import {useFilter, usePagination, usePriceFilter, useProducts, useSort} from '../model/hooks';
 import CatalogCards from './catalog-cards/CatalogCards';
 import CatalogFilter from './catalog-filter/CatalogFilter';
 import CatalogPagination from './catalog-pagination/CatalogPagination';
 import CatalogSort from './catalog-sort/CatalogSort';
-import {useProducts} from '../model';
-import {getPriceRange} from '../model/utils';
-import {useFilter, usePriceFilter, useSort} from '../model/hooks';
-import type {MouseEvent} from 'react';
 
 function Catalog() {
   const {data: products} = useProducts();
@@ -30,6 +29,13 @@ function Catalog() {
     changeSortTypeHandler,
     changeSortOrderHandler,
   ] = useSort(priceRangedProducts);
+  const [
+    pageProducts,
+    currentPage,
+    pagesCount,
+    isPaginationShown,
+    changePage,
+  ] = usePagination(sortedProducts);
 
   const priceRange = getPriceRange(filteredProducts);
 
@@ -68,8 +74,14 @@ function Catalog() {
                   onSortTypeChange={changeSortTypeHandler}
                   onSortOrderChange={changeSortOrderHandler}
                 />
-                <CatalogCards products={sortedProducts} />
-                <CatalogPagination />
+                <CatalogCards products={pageProducts} />
+
+                {isPaginationShown &&
+                  <CatalogPagination
+                    currentPage={currentPage}
+                    pagesCount={pagesCount}
+                    changePage={changePage}
+                  />}
               </div>
             </div>
           </div>
