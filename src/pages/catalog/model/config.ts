@@ -7,3 +7,4 @@ export const priceUpSort = {
 
 export const PRODUCTS_PER_PAGE = 9;
 export const PAGINATION_COUNT = 3;
+export const PAGINATION_START_PAGE = 1;

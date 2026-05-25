@@ -1,7 +1,7 @@
 import type {MouseEvent} from 'react';
 import {useState} from 'react';
 import classNames from 'classnames';
-import {PAGINATION_COUNT} from '../../model';
+import {PAGINATION_COUNT, PAGINATION_START_PAGE} from '../../model';
 import './CatalogPagination.css';
 
 interface Props {
@@ -15,9 +15,12 @@ function CatalogPagination({currentPage, pagesCount, changePage}: Props) {
   const [currentPageSection, setCurrentPageSection] = useState(initialPageSection);
   const pageSectionStart = currentPageSection * PAGINATION_COUNT;
   const pages = new Array<number>(pagesCount)
-    .fill(1)
-    .map((page, index) => (page + index))
-    .slice(pageSectionStart, pageSectionStart + PAGINATION_COUNT);
+    .fill(PAGINATION_START_PAGE)
+    .map((page, index) => (page + index));
+  const sectionPages = pages.slice(pageSectionStart, pageSectionStart + PAGINATION_COUNT);
+  const pageSectionItems = sectionPages.length < PAGINATION_COUNT ?
+    pages.slice(-PAGINATION_COUNT) :
+    sectionPages;
   const isFutherItemShown = (currentPageSection + 1) !== Math.ceil(pagesCount / PAGINATION_COUNT);
   const isBackItemShown = Boolean(currentPageSection);
 
@@ -26,8 +29,11 @@ function CatalogPagination({currentPage, pagesCount, changePage}: Props) {
     changePage(page);
   };
 
-  const getPrevPage = () => pageSectionStart + 1 - PAGINATION_COUNT > pagesCount ? pagesCount : pageSectionStart + 1 - PAGINATION_COUNT;
-  const getNextPage = () => pageSectionStart + 1 + PAGINATION_COUNT > pagesCount ? pagesCount : pageSectionStart + 1 + PAGINATION_COUNT;
+  const getPrevPage = () => pageSectionItems[0] - 1;
+  const getNextPage = () => {
+    const nextPage = pageSectionStart + 1 + PAGINATION_COUNT;
+    return nextPage > pagesCount ? pagesCount : nextPage;
+  };
 
   const handleBackItemClick = (evt: MouseEvent<HTMLAnchorElement>) => {
     evt.preventDefault();
@@ -35,7 +41,7 @@ function CatalogPagination({currentPage, pagesCount, changePage}: Props) {
     changePage(getPrevPage());
   };
 
-  const handleMextItemClick = (evt: MouseEvent<HTMLAnchorElement>) => {
+  const handleNextItemClick = (evt: MouseEvent<HTMLAnchorElement>) => {
     evt.preventDefault();
     setCurrentPageSection(currentPageSection + 1);
     changePage(getNextPage());
@@ -54,7 +60,7 @@ function CatalogPagination({currentPage, pagesCount, changePage}: Props) {
             </a>
           </li>}
 
-        {pages.map((page) => (
+        {pageSectionItems.map((page) => (
           <li key={page} className="pagination__item">
             <a
               className={classNames(
@@ -73,7 +79,7 @@ function CatalogPagination({currentPage, pagesCount, changePage}: Props) {
             <a
               className="pagination__link pagination__link--text"
               href={getNextPage().toString()}
-              onClick={handleMextItemClick}
+              onClick={handleNextItemClick}
             >Далее
             </a>
           </li>}
