@@ -1,13 +1,12 @@
 import {type MouseEvent} from 'react';
 import {Banners} from '@/widgets/banners';
 import {Breadcrumbs} from '@/widgets/breadcrumbs';
+import {getPriceRange} from '../model/utils';
+import {useFilter, usePagination, usePriceFilter, useProducts, useSort} from '../model/hooks';
 import CatalogCards from './catalog-cards/CatalogCards';
 import CatalogFilter from './catalog-filter/CatalogFilter';
 import CatalogPagination from './catalog-pagination/CatalogPagination';
 import CatalogSort from './catalog-sort/CatalogSort';
-import {useProducts} from '../model';
-import {getPriceRange} from '../model/utils';
-import {useFilter, usePagination, usePriceFilter, useSort} from '../model/hooks';
 
 function Catalog() {
   const {data: products} = useProducts();
