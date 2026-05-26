@@ -3,8 +3,12 @@ import {Icon} from '@/shared/ui/icon';
 import {useBreadcrumbs} from '../model/hooks/use-breadcrumbs/use-breadcrumbs';
 import './Breadcrumbs.css';
 
-function Breadcrumbs() {
-  const breadcrumbs = useBreadcrumbs();
+interface Props {
+  pageTitle?: string;
+}
+
+function Breadcrumbs({pageTitle}: Props) {
+  const breadcrumbs = useBreadcrumbs(pageTitle);
 
   return (
     <div className="breadcrumbs">

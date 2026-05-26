@@ -7,6 +7,7 @@ import CatalogCards from './catalog-cards/CatalogCards';
 import CatalogFilter from './catalog-filter/CatalogFilter';
 import CatalogPagination from './catalog-pagination/CatalogPagination';
 import CatalogSort from './catalog-sort/CatalogSort';
+import './Catalog.css';
 
 function Catalog() {
   const {data: products} = useProducts();

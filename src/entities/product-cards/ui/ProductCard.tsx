@@ -4,14 +4,16 @@ import {Rate} from '@/shared/ui/rate';
 import type {Product} from '@/shared/dto';
 import {formatPrice} from '@/shared/lib/format-price';
 import './ProductCard.css';
+import {AppRoute} from '@/shared/enums';
 
 interface Props {
   product: Product;
 }
 
 function ProductCard({product}: Props) {
-  const {previewImg, previewImg2x, previewImgWebp, previewImgWebp2x, name, rating, reviewCount, price} = product;
+  const {id, previewImg, previewImg2x, previewImgWebp, previewImgWebp2x, name, rating, reviewCount, price} = product;
   const formattedPrice = formatPrice(price);
+  const productDetailsRoute = `/${AppRoute.Product}/${id.toString()}`;
 
   return (
     <div className="product-card">
@@ -37,7 +39,7 @@ function ProductCard({product}: Props) {
       </div>
       <div className="product-card__buttons">
         <FilledButton className="product-card__btn">Купить</FilledButton>
-        <TextButton href="#">Подробнее</TextButton>
+        <TextButton href={productDetailsRoute}>Подробнее</TextButton>
       </div>
     </div>
   );
