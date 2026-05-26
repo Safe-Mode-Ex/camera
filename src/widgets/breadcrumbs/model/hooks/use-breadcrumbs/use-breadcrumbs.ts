@@ -2,7 +2,7 @@ import {useLocation} from 'react-router-dom';
 import {BreadcrumbTitle} from '../../../enums/breadcrumb-title';
 import type {Breadcrumb} from '../../types';
 
-export const useBreadcrumbs = (): Breadcrumb[] => {
+export const useBreadcrumbs = (pageTitle = ''): Breadcrumb[] => {
   const {pathname} = useLocation();
   const pathNames = pathname.split('/');
 
@@ -12,7 +12,7 @@ export const useBreadcrumbs = (): Breadcrumb[] => {
     const prevHref = isFirst ? '' : result[index - 1].href;
 
     result.push({
-      title: BreadcrumbTitle[path],
+      title: BreadcrumbTitle[path] ?? pageTitle,
       href: isLast ? '' : `${prevHref}/${path}`,
       isLast,
     });

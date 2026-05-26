@@ -1,4 +1,5 @@
 import type {ReactNode} from 'react';
+import {Link} from 'react-router-dom';
 
 interface Props {
   href: string;
@@ -7,7 +8,7 @@ interface Props {
 
 function TextButton({href, children}: Props) {
   return (
-    <a className="btn btn--transparent" href={href}>{ children }</a>
+    <Link className="btn btn--transparent" to={href}>{ children }</Link>
   );
 }
 
