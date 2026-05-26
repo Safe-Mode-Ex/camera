@@ -13,7 +13,7 @@ interface Props {
 function ProductCard({product}: Props) {
   const {id, previewImg, previewImg2x, previewImgWebp, previewImgWebp2x, name, rating, reviewCount, price} = product;
   const formattedPrice = formatPrice(price);
-  const productDetailsRoute = `/${AppRoute.Product}/${id.toString()}`;
+  const productDetailsRoute = `${AppRoute.Product}/${id.toString()}`;
 
   return (
     <div className="product-card">
