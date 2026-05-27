@@ -3,13 +3,14 @@ import {Icon} from '@/shared/ui/icon';
 import {PreviewImage} from '@/shared/ui/preview-image';
 import {Rate} from '@/shared/ui/rate';
 import './ProductDetails.css';
+const {BASE_URL} = import.meta.env;
 
 function ProductDetails() {
   const imageSource = {
-    previewImg: '/img/content/das-auge.jpg',
-    previewImg2x: '/img/content/das-auge@2x.jpg',
-    previewImgWebp: '/img/content/das-auge.webp',
-    previewImgWebp2x: '/img/content/das-auge@2x.webp',
+    previewImg: `${BASE_URL}img/content/das-auge.jpg`,
+    previewImg2x: `${BASE_URL}img/content/das-auge@2x.jpg`,
+    previewImgWebp: `${BASE_URL}img/content/das-auge.webp`,
+    previewImgWebp2x: `${BASE_URL}img/content/das-auge@2x.webp`,
   };
   return (
     <section className="product">

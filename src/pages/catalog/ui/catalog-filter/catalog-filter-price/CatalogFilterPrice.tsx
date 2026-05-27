@@ -21,8 +21,8 @@ function CatalogFilterPrice({
 }: Props) {
   const [minPrice, maxPrice] = priceRange;
   const [minValue, maxValue] = valueRange;
-  const minPricePlaceholder = minPrice.toString() || 'от';
-  const maxPricePlaceholder = maxPrice.toString() || 'до';
+  const minPricePlaceholder = minPrice ? minPrice.toString() : 'от';
+  const maxPricePlaceholder = maxPrice ? maxPrice.toString() : 'до';
 
   return (
     <fieldset className="catalog-filter__block">
