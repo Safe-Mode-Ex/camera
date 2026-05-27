@@ -1,6 +1,6 @@
 import type {ChangeEvent, Dispatch, FocusEvent, SetStateAction} from 'react';
 import {useState} from 'react';
-import {useUpdatePrice} from '..';
+import {useUpdatePrice} from '../use-update-price/use-update-price';
 
 export const usePrice = (
   minPrice: number,
