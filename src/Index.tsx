@@ -12,6 +12,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
+    {/* TODO: В конце проверить, нужен ли нам тут HistoryRouter
+      (будем ли использовать императивную навигацию) */}
     <HistoryRouter history={browserHistory} basename={BASE_URL}>
       <App />
     </HistoryRouter>
