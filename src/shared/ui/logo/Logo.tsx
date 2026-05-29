@@ -1,4 +1,4 @@
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom';
 import {Icon} from '../icon';
 import {IconLogo} from './enums/icon-logo';
 import {AppRoute} from '@/shared/enums';
