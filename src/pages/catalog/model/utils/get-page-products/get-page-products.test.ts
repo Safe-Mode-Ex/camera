@@ -1,6 +1,6 @@
 import {PRODUCTS_PER_PAGE} from '../../config';
 import {getPageProducts} from './get-page-products';
-import {products} from './mocks';
+import {products} from '../../mocks';
 
 describe('getPageProducts', () => {
   it('should return first page products', () => {
