@@ -4,7 +4,6 @@ export const getCurrentPage = (
   pagesCount: number,
   initialPageFromQuery: number,
 ): number => {
-
   const initialPage = initialPageFromQuery || PAGINATION_START_PAGE;
 
   if (!pagesCount || initialPage < PAGINATION_START_PAGE) {
