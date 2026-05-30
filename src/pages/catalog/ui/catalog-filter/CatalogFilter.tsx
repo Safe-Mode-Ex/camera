@@ -31,14 +31,14 @@ function CatalogFilter({
   setMaxPriceValue,
 }: Props) {
   const [minPrice, maxPrice] = priceRange;
-  const [
+  const {
     valueRange,
     handleMinPriceChange,
     handleMaxPriceChange,
     handleMinPriceBlur,
     handleMaxPriceBlur,
     resetPriceValues,
-  ] = usePrice(minPrice, maxPrice, setMinPriceValue, setMaxPriceValue);
+  } = usePrice(minPrice, maxPrice, setMinPriceValue, setMaxPriceValue);
   const hasFilters = Boolean(category ?? (types.length || levels.length));
   const hasPrice = valueRange.some((value) => Boolean(value));
   const isResetBtnShown = hasFilters || hasPrice;
