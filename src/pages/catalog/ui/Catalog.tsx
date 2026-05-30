@@ -11,13 +11,13 @@ import './Catalog.css';
 
 function Catalog() {
   const {data: products} = useProducts();
-  const [
+  const {
     filteredProducts,
     activeFilter,
     changeRadioHandler,
     changeCheckboxHandler,
-    resetFilter,
-  ] = useFilter(products);
+    resetFilters,
+  } = useFilter(products);
   const [
     priceRangedProducts,
     setMinPriceValue,
@@ -41,7 +41,7 @@ function Catalog() {
   const priceRange = getPriceRange(filteredProducts);
 
   const handleFiltersReset = (evt: MouseEvent<HTMLButtonElement>) => {
-    resetFilter(evt);
+    resetFilters(evt);
     resetPriceFilter();
   };
 
