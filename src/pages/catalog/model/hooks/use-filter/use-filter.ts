@@ -3,7 +3,7 @@ import {useState} from 'react';
 import type {Product} from '@/shared/dto';
 import type {FilterType, FilterLevel} from '../../enums';
 import type {ChangeCheckableHandler, Filter} from '../../types';
-import {filterProducts} from '../../utils/filter-products/filter-products';
+import {filterProducts} from '../../utils';
 
 export const useFilter = (products: Product[] = []): {
   filteredProducts: Product[],
