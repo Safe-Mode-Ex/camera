@@ -4,13 +4,13 @@ import type {Product} from '@/shared/dto';
 import {PRODUCTS_PER_PAGE} from '../../config';
 import {getCurrentPage, getPageProducts} from '../../utils';
 
-export const usePagination = (products: Product[]): [
-  Product[],
-  number,
-  number,
-  boolean,
-  (page: number) => void,
-] => {
+export const usePagination = (products: Product[]): {
+  pageProducts: Product[],
+  currentPage: number,
+  pagesCount: number,
+  isPaginationShown: boolean,
+  changePage: (page: number) => void,
+} => {
   const [queryParams, setQueryParams] = useSearchParams();
   const pageFromQuery = Number(queryParams.get('page'));
   const pagesCount = Math.ceil(products.length / PRODUCTS_PER_PAGE);
@@ -28,5 +28,5 @@ export const usePagination = (products: Product[]): [
     }
   }, [pageFromQuery, currentPage, setQueryParams]);
 
-  return [pageProducts, currentPage, pagesCount, isPaginationShown, changePage];
+  return {pageProducts, currentPage, pagesCount, isPaginationShown, changePage};
 };

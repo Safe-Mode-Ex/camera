@@ -2,28 +2,19 @@ import type {ChangeEvent, MouseEvent} from 'react';
 import {useState} from 'react';
 import type {Product} from '@/shared/dto';
 import type {FilterType, FilterLevel} from '../../enums';
-import {categoryMap, typeMap, levelMap} from '../../maps';
 import type {ChangeCheckableHandler, Filter} from '../../types';
-import {hasProperFilter} from '../../utils';
+import {filterProducts} from '../../utils';
 
-export const useFilter = (products: Product[] = []): [
-  Product[],
-  Filter,
-  ChangeCheckableHandler<Filter>,
-  ChangeCheckableHandler<Omit<Filter, 'category'>>,
-  (evt: MouseEvent<HTMLButtonElement>) => void,
-] => {
+export const useFilter = (products: Product[] = []): {
+  filteredProducts: Product[],
+  activeFilter: Filter,
+  changeRadioHandler: ChangeCheckableHandler<Filter>,
+  changeCheckboxHandler: ChangeCheckableHandler<Omit<Filter, 'category'>>,
+  resetFilters: (evt: MouseEvent<HTMLButtonElement>) => void,
+} => {
   const initialFilter = {category: null, types: [], levels: []};
-
   const [activeFilter, setActiveFilter] = useState<Filter>(initialFilter);
-  const filteredProducts = [...products].filter(({category, type, level}) => {
-    const {category: filterCategory, types: filterTypes, levels: filterLevels} = activeFilter;
-    const isProperCategory = !filterCategory || categoryMap[filterCategory] === category;
-
-    return isProperCategory
-        && hasProperFilter(type, filterTypes, typeMap)
-        && hasProperFilter(level, filterLevels, levelMap);
-  });
+  const filteredProducts = filterProducts(products, activeFilter);
 
   const changeRadioHandler = (filterParam: keyof Filter) =>
     ({target}: ChangeEvent<HTMLInputElement>) => {
@@ -52,11 +43,11 @@ export const useFilter = (products: Product[] = []): [
     setActiveFilter(initialFilter);
   };
 
-  return [
+  return {
     filteredProducts,
     activeFilter,
     changeRadioHandler,
     changeCheckboxHandler,
     resetFilters,
-  ];
+  };
 };

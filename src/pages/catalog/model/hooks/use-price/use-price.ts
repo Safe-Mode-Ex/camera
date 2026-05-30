@@ -7,14 +7,14 @@ export const usePrice = (
   maxPrice: number,
   setMinPriceValue: Dispatch<SetStateAction<number | null>>,
   setMaxPriceValue: Dispatch<SetStateAction<number | null>>,
-): [
-  [number, number],
-  ({target}: ChangeEvent<HTMLInputElement>) => void,
-  ({target}: ChangeEvent<HTMLInputElement>) => void,
-  ({target}: FocusEvent<HTMLInputElement>) => void,
-  ({target}: FocusEvent<HTMLInputElement>) => void,
-  () => void,
-] => {
+): {
+  valueRange: [number, number],
+  handleMinPriceChange: ({target}: ChangeEvent<HTMLInputElement>) => void,
+  handleMaxPriceChange: ({target}: ChangeEvent<HTMLInputElement>) => void,
+  handleMinPriceBlur: ({target}: FocusEvent<HTMLInputElement>) => void,
+  handleMaxPriceBlur: ({target}: FocusEvent<HTMLInputElement>) => void,
+  resetPriceValues: () => void,
+} => {
   const [minValue, setMinValue] = useState<number>(0);
   const [maxValue, setMaxValue] = useState<number>(0);
 
@@ -101,12 +101,12 @@ export const usePrice = (
     setMaxPriceValue(value);
   };
 
-  return [
-    [minValue, maxValue],
+  return {
+    valueRange: [minValue, maxValue],
     handleMinPriceChange,
     handleMaxPriceChange,
     handleMinPriceBlur,
     handleMaxPriceBlur,
     resetPriceValues,
-  ];
+  };
 };

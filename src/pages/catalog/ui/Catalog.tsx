@@ -11,37 +11,37 @@ import './Catalog.css';
 
 function Catalog() {
   const {data: products} = useProducts();
-  const [
+  const {
     filteredProducts,
     activeFilter,
     changeRadioHandler,
     changeCheckboxHandler,
-    resetFilter,
-  ] = useFilter(products);
-  const [
+    resetFilters,
+  } = useFilter(products);
+  const {
     priceRangedProducts,
     setMinPriceValue,
     setMaxPriceValue,
     resetPriceFilter,
-  ] = usePriceFilter(filteredProducts);
-  const [
+  } = usePriceFilter(filteredProducts);
+  const {
     sortedProducts,
     sort,
     changeSortTypeHandler,
     changeSortOrderHandler,
-  ] = useSort(priceRangedProducts);
-  const [
+  } = useSort(priceRangedProducts);
+  const {
     pageProducts,
     currentPage,
     pagesCount,
     isPaginationShown,
     changePage,
-  ] = usePagination(sortedProducts);
+  } = usePagination(sortedProducts);
 
   const priceRange = getPriceRange(filteredProducts);
 
   const handleFiltersReset = (evt: MouseEvent<HTMLButtonElement>) => {
-    resetFilter(evt);
+    resetFilters(evt);
     resetPriceFilter();
   };
 
