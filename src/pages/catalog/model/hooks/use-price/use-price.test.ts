@@ -55,7 +55,8 @@ describe('Hook: usePrice', () => {
     const {handleMinPriceBlur, handleMaxPriceBlur} = result.current;
     act(() => {
       handleMinPriceBlur({
-        target: {value: expectedMinPrice}} as unknown as FocusEvent<HTMLInputElement>);
+        target: {value: expectedMinPrice},
+      } as unknown as FocusEvent<HTMLInputElement>);
     });
     act(() => {
       handleMaxPriceBlur({
