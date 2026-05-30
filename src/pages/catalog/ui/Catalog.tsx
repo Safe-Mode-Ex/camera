@@ -30,13 +30,13 @@ function Catalog() {
     changeSortTypeHandler,
     changeSortOrderHandler,
   ] = useSort(priceRangedProducts);
-  const [
+  const {
     pageProducts,
     currentPage,
     pagesCount,
     isPaginationShown,
     changePage,
-  ] = usePagination(sortedProducts);
+  } = usePagination(sortedProducts);
 
   const priceRange = getPriceRange(filteredProducts);
 
