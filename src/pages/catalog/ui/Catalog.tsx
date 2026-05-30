@@ -18,12 +18,12 @@ function Catalog() {
     changeCheckboxHandler,
     resetFilters,
   } = useFilter(products);
-  const [
+  const {
     priceRangedProducts,
     setMinPriceValue,
     setMaxPriceValue,
     resetPriceFilter,
-  ] = usePriceFilter(filteredProducts);
+  } = usePriceFilter(filteredProducts);
   const [
     sortedProducts,
     sort,
