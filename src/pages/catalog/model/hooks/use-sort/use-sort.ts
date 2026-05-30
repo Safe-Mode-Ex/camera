@@ -5,7 +5,12 @@ import type {Sort, SortOrderHandler, SortTypeHandler} from '../../types';
 import {sortProducts} from '../../utils';
 import {priceUpSort} from '../../config';
 
-export const useSort = (products: Product[] = []): [Product[], Sort, SortTypeHandler, SortOrderHandler] => {
+export const useSort = (products: Product[] = []): {
+  sortedProducts: Product[],
+  sort: Sort,
+  changeSortTypeHandler: SortTypeHandler,
+  changeSortOrderHandler: SortOrderHandler,
+} => {
   const [sort, setSort] = useState<Sort>(priceUpSort);
   const sortedProducts = sortProducts(products, sort);
 
@@ -23,5 +28,5 @@ export const useSort = (products: Product[] = []): [Product[], Sort, SortTypeHan
     }));
   };
 
-  return [sortedProducts, sort, changeSortTypeHandler, changeSortOrderHandler];
+  return {sortedProducts, sort, changeSortTypeHandler, changeSortOrderHandler};
 };

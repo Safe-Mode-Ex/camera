@@ -24,12 +24,12 @@ function Catalog() {
     setMaxPriceValue,
     resetPriceFilter,
   } = usePriceFilter(filteredProducts);
-  const [
+  const {
     sortedProducts,
     sort,
     changeSortTypeHandler,
     changeSortOrderHandler,
-  ] = useSort(priceRangedProducts);
+  } = useSort(priceRangedProducts);
   const {
     pageProducts,
     currentPage,
