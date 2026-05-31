@@ -2,6 +2,7 @@ import {FilledButton} from '@/shared/ui/button';
 import {Icon} from '@/shared/ui/icon';
 import {PreviewImage} from '@/shared/ui/preview-image';
 import {Rate} from '@/shared/ui/rate';
+import {Tabs} from '@/shared/ui/tabs';
 import './ProductDetails.css';
 const {BASE_URL} = import.meta.env;
 
@@ -38,14 +39,14 @@ function ProductDetails() {
             Добавить в корзину
           </FilledButton>
 
-          {/* TODO: вынести в @shared/ui/tabs */}
-          <div className="tabs product__tabs">
-            <div className="tabs__controls product__tabs-controls">
-              <button className="tabs__control" type="button">Характеристики</button>
-              <button className="tabs__control is-active" type="button">Описание</button>
-            </div>
-            <div className="tabs__content">
-              <div className="tabs__element">
+          <Tabs className="product__tabs" defaultValue="description">
+            <Tabs.Controls className="product__tabs-controls">
+              <Tabs.Control value="specs">Характеристики</Tabs.Control>
+              <Tabs.Control value="description">Описание</Tabs.Control>
+            </Tabs.Controls>
+
+            <Tabs.Content>
+              <Tabs.Element value="specs">
                 <ul className="product__tabs-list">
                   <li className="item-list"><span className="item-list__title">Артикул:</span>
                     <p className="item-list__text"> DA4IU67AD5</p>
@@ -60,15 +61,16 @@ function ProductDetails() {
                     <p className="item-list__text">Любительский</p>
                   </li>
                 </ul>
-              </div>
-              <div className="tabs__element is-active">
+              </Tabs.Element>
+
+              <Tabs.Element value="description">
                 <div className="product__tabs-text">
                   <p>Немецкий концерн BRW разработал видеокамеру Das Auge IV в&nbsp;начале 80-х годов, однако она до&nbsp;сих пор пользуется популярностью среди коллекционеров и&nbsp;яростных почитателей старинной техники.</p>
                   <p>Вы&nbsp;тоже можете прикоснуться к&nbsp;волшебству аналоговой съёмки, заказав этот чудо-аппарат. Кто знает, может с&nbsp;Das Auge IV&nbsp;начнётся ваш путь к&nbsp;наградам всех престижных кинофестивалей.</p>
                 </div>
-              </div>
-            </div>
-          </div>
+              </Tabs.Element>
+            </Tabs.Content>
+          </Tabs>
         </div>
       </div>
     </section>
