@@ -1,3 +1,5 @@
+import './ProductReviews.css';
+
 function ProductReviews() {
   return (
     <section className="review-block">
