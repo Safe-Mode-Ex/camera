@@ -2,7 +2,7 @@ import type {ProductCategory} from './product-category';
 import type {ProductLevel} from './product-level';
 import type {ProductType} from './product-type';
 
-export interface ProductDetails {
+export interface DetailedProduct {
   id: number;
   name: string;
   vendorCode: string;

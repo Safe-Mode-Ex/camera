@@ -1,18 +1,38 @@
+import type {DetailedProduct} from '@/shared/dto';
 import {FilledButton} from '@/shared/ui/button';
 import {Icon} from '@/shared/ui/icon';
+import {formatPrice} from '@/shared/lib/format-price';
 import {PreviewImage} from '@/shared/ui/preview-image';
 import {Rate} from '@/shared/ui/rate';
 import {Tabs} from '@/shared/ui/tabs';
 import './ProductDetails.css';
+
 const {BASE_URL} = import.meta.env;
 
-function ProductDetails() {
+function ProductDetails(product: DetailedProduct) {
+  const {
+    previewImg,
+    previewImg2x,
+    previewImgWebp,
+    previewImgWebp2x,
+    name,
+    rating,
+    reviewCount,
+    price,
+    vendorCode,
+    category,
+    type,
+    level,
+    description,
+  } = product;
+
   const imageSource = {
-    previewImg: `${BASE_URL}img/content/das-auge.jpg`,
-    previewImg2x: `${BASE_URL}img/content/das-auge@2x.jpg`,
-    previewImgWebp: `${BASE_URL}img/content/das-auge.webp`,
-    previewImgWebp2x: `${BASE_URL}img/content/das-auge@2x.webp`,
+    previewImg: `${BASE_URL}${previewImg}`,
+    previewImg2x: `${BASE_URL}${previewImg2x}`,
+    previewImgWebp: `${BASE_URL}${previewImgWebp}`,
+    previewImgWebp2x: `${BASE_URL}${previewImgWebp2x}`,
   };
+
   return (
     <section className="product">
       <div className="container">
@@ -21,17 +41,18 @@ function ProductDetails() {
             imageSource={imageSource}
             width="560"
             height="480"
-            alt="Ретрокамера Das Auge IV"
+            alt={name}
           />
         </div>
 
         <div className="product__content">
-          <h1 className="title title--h3">Ретрокамера «Das Auge IV»</h1>
+          <h1 className="title title--h3">{name}</h1>
 
-          <Rate className="product__rate" rating={4} total={12} />
+          <Rate className="product__rate" rating={rating} total={reviewCount} />
 
           <p className="product__price">
-            <span className="visually-hidden">Цена:</span>73 450 ₽
+            <span className="visually-hidden">Цена:</span>
+            {formatPrice(price)}
           </p>
 
           <FilledButton>
@@ -48,25 +69,28 @@ function ProductDetails() {
             <Tabs.Content>
               <Tabs.Element value="specs">
                 <ul className="product__tabs-list">
-                  <li className="item-list"><span className="item-list__title">Артикул:</span>
-                    <p className="item-list__text"> DA4IU67AD5</p>
+                  <li className="item-list">
+                    <span className="item-list__title">Артикул:</span>
+                    <p className="item-list__text">{vendorCode}</p>
                   </li>
-                  <li className="item-list"><span className="item-list__title">Категория:</span>
-                    <p className="item-list__text">Видеокамера</p>
+                  <li className="item-list">
+                    <span className="item-list__title">Категория:</span>
+                    <p className="item-list__text">{category}</p>
                   </li>
-                  <li className="item-list"><span className="item-list__title">Тип камеры:</span>
-                    <p className="item-list__text">Коллекционная</p>
+                  <li className="item-list">
+                    <span className="item-list__title">Тип камеры:</span>
+                    <p className="item-list__text">{type}</p>
                   </li>
-                  <li className="item-list"><span className="item-list__title">Уровень:</span>
-                    <p className="item-list__text">Любительский</p>
+                  <li className="item-list">
+                    <span className="item-list__title">Уровень:</span>
+                    <p className="item-list__text">{level}</p>
                   </li>
                 </ul>
               </Tabs.Element>
 
               <Tabs.Element value="description">
                 <div className="product__tabs-text">
-                  <p>Немецкий концерн BRW разработал видеокамеру Das Auge IV в&nbsp;начале 80-х годов, однако она до&nbsp;сих пор пользуется популярностью среди коллекционеров и&nbsp;яростных почитателей старинной техники.</p>
-                  <p>Вы&nbsp;тоже можете прикоснуться к&nbsp;волшебству аналоговой съёмки, заказав этот чудо-аппарат. Кто знает, может с&nbsp;Das Auge IV&nbsp;начнётся ваш путь к&nbsp;наградам всех престижных кинофестивалей.</p>
+                  <p>{description}</p>
                 </div>
               </Tabs.Element>
             </Tabs.Content>
