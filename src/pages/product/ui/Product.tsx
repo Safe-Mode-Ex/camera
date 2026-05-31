@@ -14,13 +14,11 @@ function Product() {
     return null;
   }
 
-  const {name} = product;
-
   return (
     <>
       <main>
         <div className="page-content">
-          <Breadcrumbs pageTitle={name} />
+          <Breadcrumbs pageTitle={product.name} />
 
           <div className="page-content__section">
             <ProductDetails {...product} />
